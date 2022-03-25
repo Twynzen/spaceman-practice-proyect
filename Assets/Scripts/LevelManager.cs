@@ -26,7 +26,20 @@ public class LevelManager : MonoBehaviour
         
     }
     public void AddLevelBlock(){
+        int randomIdx = Random.Range(0,allTheLevelBlocks.Count);
 
+        LevelBlock block;
+
+        Vector3 spawnPosition = Vector3.zero;
+
+        //El bloque #0 debe instanciarse siempre por primera vez.
+        if(currentLevelBlocks.Count == 0){
+            block = Intantiate(allTheLevelBlocks[0]);
+            spawnPotition = levelStartPosition.position;
+        }else{
+            block = Intantiate(allTheLevelBlocks[randomIdx]);
+            spawnPosition = currentLevelBlocks[currentLevelBlocks.Count -1].exitPoint.position
+        }
     }
     public void RemoveLevelBlock(){
 

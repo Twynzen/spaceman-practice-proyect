@@ -73,6 +73,21 @@ Existen diferentes tipos de colliders:
 > * **OnTriggerStay2D():** Se detecta un constante contacto con algo que entra en la zona.
 > * **OnTriggerExit2D():** Se detecta que algo salio de la zona
 
+## SINGLETON
+Importante patron de diseño que permite no volver a repetir una instancia de clase. Especifico para que solo haya un controlador. Se aplica normalmente a:
+* **GameManager:** Solo se necesita un manejador del juego.
+* **PlayerControler:** Para casos de 1 solo jugador.
+* **LevelManager:** Solo se necesita un controlador de todos los niveles.
+El singleton se utiliza así dentro del Awake:
+```cs
+public static CosoManager sharedInstance;
+
+    void Awake(){
+        if(sharedInstance == null){
+            sharedInstance = this;
+        }
+    }
+```
 
 ## LAYERS/CAPAS
 Se pueden crear capas para identificar un concepto como **suelo/ground** 
@@ -95,6 +110,62 @@ Metodo valioso  es como el setInterval de Javascript retraza una ejecución un t
 Recibe 2 parametros:
 1. El nombre de la función en un string.
 2. El tiempo que durara el intervalor de tiempo.
+
+## MAP/LEVEL-DESING 2D OBJECT POOLING
+
+<img src="https://images.pexels.com/photos/189296/pexels-photo-189296.jpeg?cs=srgb&dl=pexels-donald-tong-189296.jpg&fm=jpg" alt="drawing" style="width:200px;"/>
+
+Es util ordenar todos los elementos de una zona como paredes y suelos dentro de un mismo objeto: este es llamado **bloque de nivel**. Al unir todas estas estructuras se logra un orden claro del escenario.
+### CONTROL DE MAPAS PROCEDURALES
+Una estrategía para crear escenarios procedurales es colocar unos: 
+* **StartPoint:** Al inicio del bloque de nivel.
+* **EndPoint:** Al final del bloque de nivel.
+> Esto permitirá, una vez esten alineados, identificar un equilibrio en la ubicación de los bloques del escenario.
+> El bloque de nivel debe tener un script que reciba los 2 puntos Start y End.
+
+
+1. Se crea un array donde se almacenaran todos los bloques de nivel:
+```cs
+    public List<LevelBlock> allTheLevelBlocks = new List<LevelBlock>();
+```
+2. Se crea un array para los bloques de nivel actuales:
+```cs
+    public List<LevelBlock> currentLevelBlocks = new List<LevelBlock>();
+```
+3. Se crea una variable donde se crea el primer bloque:
+```cs
+    public Transform levelStartPosition;
+```
+> Este **levelStartPosition** debe crearce como GamerObject y pasarlo como parametro al **LevelManager**. También se le pasa por parametro al **AddLevelBlock** todos los bloques de nivel creados.
+**Level Manager:** Lógica que permite dar control a los bloques de nivel. Esta logica tendrá 4 funciones principales:
+> * **AddLevelBlock:** Para añadir nuevos bloques de nivel.
+> > Se utiliza una variable generadora de números random, con la limitación de bloques de niveles que queremos adiccionar.
+```cs
+    int random = Random.Range(0, allTheLevelBlocks.Count);
+```
+> > Se debe usar la logica de los bloques que deseamos añadir cumpla la expectativa, en caso de que se quiera que el bloque inicial en ejemplo sea unico, se puede colocar una condición que permita instanciar el primer bloque solo una vez. 
+
+> > Se instancias los bloques de esta forma
+```cs
+    block = Intantiate(allTheLevelBlocks[random]);
+```
+
+> * **RemoveLevelBlock:** Para borrar un bloque de nivel que ya no este en uso.
+> * **RemoveAllLevelBlocks:** Para borarr todos los bloques de nivel.
+> * **GenerateInitialBlocks:** Para generar nuevos bloques iniciales. Tendrá un bucle que llamara al **AddLevelBlock** las veces que sean necesarias. El **GenerateInitialBlocks** se inicializará dentro del Start();
+
+**Exit Zone:** Destruirá el bloque anterior de la visualización. Será un objeto con un colider extendido verticalmente que cubra y sobrepase el tamaño de altura de la camara.
+* Debe tener el "is Trigger" activado. En el codigo se utilizaría:
+```cs
+    void onTriggerEnter2D(Collider2D collision){
+
+    }
+```
+* Debe tener un script para manejar su funcionalidad.
+
+#### TIPS 
+* Para juegos 2d (normalmente de plataformas) es bueno tener un entorno plano para comenzar.
+
 
 
 
