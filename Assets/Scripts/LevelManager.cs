@@ -26,25 +26,36 @@ public class LevelManager : MonoBehaviour
         
     }
     public void AddLevelBlock(){
-
+        //generamos un número aleatorio dentro de las posiciones disponibles
+        //Esto es una generación equiprobable de un rango de bloques disponibles
         int randomIdx = Random.Range(0, allTheLevelBlocks.Count);
 
         LevelBlock block;
 
+        //Aqui colocaremos una varibale donde queremos colocar el bloque
         Vector3 spawnPosition = Vector3.zero;
 
         //El bloque #0 debe instanciarse siempre por primera vez.
+        //Si no hay bloques en escena
         if(currentLevelBlocks.Count == 0){
+            //Instanciamos el primer bloque
             block = Instantiate(allTheLevelBlocks[0]);
-            
             spawnPosition = levelStartPosition.position;
-        }else{
-            block = Instantiate(allTheLevelBlocks[randomIdx]);
-            spawnPosition = currentLevelBlocks[currentLevelBlocks.Count -1].endPoint.position;
+            Debug.Log(block);
+
         }
+        else
+        {
+            //Instanciamos los bloques de forma aleatoria
+            block = Instantiate(allTheLevelBlocks[randomIdx]);
+            //colocamos el bloque al final del últiumo bloque generado
+            spawnPosition = currentLevelBlocks[currentLevelBlocks.Count - 1].endPoint.position;
+        }
+        //El padre del bloque actual es el level manager
         block.transform.SetParent(this.transform,false);
 
-        Vector3 correction = new Vector3(spawnPosition.x-block.startPoint.position.x, spawnPosition.x-block.startPoint.position.y,0);
+        Vector3 correction = new Vector3(spawnPosition.x-block.startPoint.position.x,
+         spawnPosition.x-block.startPoint.position.y,0);
             block.transform.position = correction;
             currentLevelBlocks.Add(block);
     }
