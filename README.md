@@ -166,8 +166,14 @@ Una estrategía para crear escenarios procedurales es colocar unos:
 #### TIPS 
 * Para juegos 2d (normalmente de plataformas) es bueno tener un entorno plano para comenzar.
 
-
-
+## RAGDOLL
+Un ragdoll no es más que un conjunto de objetos 2d o 3d unidos entre sí. Este tenrá efecto de las leyes de la fisica y podrá tener diferentes tamaños, formas y movimientos.
+> > * Se puede colocar un suelo para que funcione de plataforma.
+1. El ragdoll estaría compuesto por objetos 2d o 3d estos deben tener:
+> * **RigidBody:** Para que le afecten las leyes de la física.
+> * **BoxCollider:** Para que colicionen las partes del ragdoll con el entorno.
+2. Se deben distribuir los objetos que componen al ragdoll con extremidades y algún torso. Estas extrmidades deben poder conectarse al torso con el componente:
+> * **HingeJoint:** Este tendrá un parametro llamado **Connected Rigid Body** el cual debe recibir a si mismo otro parametro el cual sería el torso o extremidad de donde se compacte al cuerpo.
 
 
 

@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager sharedInstance;
-    public List<LevelBlock> allTheLevelBlocks = new List<LevelBlock>();
+    public List<LevelBlock> allTheLevelBlocks;
     public List<LevelBlock> currentLevelBlocks = new List<LevelBlock>();
     public Transform levelStartPosition;
 
@@ -41,7 +41,8 @@ public class LevelManager : MonoBehaviour
             //Instanciamos el primer bloque
             block = Instantiate(allTheLevelBlocks[0]);
             spawnPosition = levelStartPosition.position;
-            Debug.Log(block);
+            
+            Debug.Log(spawnPosition);
 
         }
         else
@@ -55,7 +56,7 @@ public class LevelManager : MonoBehaviour
         block.transform.SetParent(this.transform,false);
 
         Vector3 correction = new Vector3(spawnPosition.x-block.startPoint.position.x,
-         spawnPosition.x-block.startPoint.position.y,0);
+                                         spawnPosition.y-block.startPoint.position.y,0);
             block.transform.position = correction;
             currentLevelBlocks.Add(block);
     }
@@ -66,7 +67,7 @@ public class LevelManager : MonoBehaviour
 
     }   
     public void GenerateInitialBlocks(){
-        for (int i=0; i<2; i++ ){
+        for (int i=0; i<10; i++ ){
             AddLevelBlock();
         }
     }
