@@ -175,6 +175,8 @@ Un ragdoll no es más que un conjunto de objetos 2d o 3d unidos entre sí. Este 
 2. Se deben distribuir los objetos que componen al ragdoll con extremidades y algún torso. Estas extrmidades deben poder conectarse al torso con el componente:
 > * **HingeJoint:** Este tendrá un parametro llamado **Connected Rigid Body** el cual debe recibir a si mismo otro parametro el cual sería el torso o extremidad de donde se compacte al cuerpo.
 
+## CAMERA FOLLOW
+Es un script que se encargará de seguir al personaje en todo momento.
 
 
 
