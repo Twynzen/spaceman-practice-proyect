@@ -177,6 +177,8 @@ Un ragdoll no es más que un conjunto de objetos 2d o 3d unidos entre sí. Este 
 
 ## CAMERA FOLLOW
 Es un script que se encargará de seguir al personaje en todo momento.
+Se puede colocar la camara como hija del "player" pero es mejor  crear un script que se encargue de controlar todo esto.
+
 
 
 
