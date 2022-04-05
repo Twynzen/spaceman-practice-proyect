@@ -16,6 +16,11 @@ public class ExitZone : MonoBehaviour
         
     }
     void onTriggerEnter2D(Collider2D collision){
-        Debug.Log("Eliminar bloque anterior"); 
+        if(collision.tag == "player")
+        {
+            LevelManager.sharedInstance.AddLevelBlock();
+            LevelManager.sharedInstance.RemoveLevelBlock();
+        }
     }
+
 }
