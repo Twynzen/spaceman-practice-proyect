@@ -16,11 +16,11 @@ public class ExitZone : MonoBehaviour
         
     }
     void onTriggerEnter2D(Collider2D collision){
-        if(collision.tag == "player")
-        {
-            LevelManager.sharedInstance.AddLevelBlock();
-            LevelManager.sharedInstance.RemoveLevelBlock();
-        }
+        // if(collision.tag == "player")
+        // {
+        //     LevelManager.sharedInstance.AddLevelBlock();
+        //     LevelManager.sharedInstance.RemoveLevelBlock();
+        // }
     }
 
 }
