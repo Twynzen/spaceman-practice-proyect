@@ -15,7 +15,8 @@ public class ExitZone : MonoBehaviour
     {
         
     }
-    void onTriggerEnter2D(Collider2D collision){
+    void OnTriggerEnter2D(Collider2D collision){
+        Debug.Log("pasa algo?");
         if(collision.tag == "player")
         {
             LevelManager.sharedInstance.AddLevelBlock();

@@ -61,11 +61,14 @@ public class LevelManager : MonoBehaviour
             currentLevelBlocks.Add(block);
     }
     public void RemoveLevelBlock(){
-       Block oldBlock = currentLevelBlocks[0];
-        currentLevelBlocks.Remove(oldBlo Levelck);
+        Debug.Log("Hellouda");
+        //Un ciclo que guarda la posición inicial del array y la elimina
+       LevelBlock oldBlock = currentLevelBlocks[0];
+        currentLevelBlocks.Remove(oldBlock);
         Destroy(oldBlock.gameObject);
     }
     public void RemoveAllLevelBlocks(){
+        //mientras que existan bloques, se llamara al removeLevelBlock
         while (currentLevelBlocks.Count > 0)
         {
             RemoveLevelBlock();

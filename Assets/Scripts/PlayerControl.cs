@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerControl : MonoBehaviour
 {
     public float jumpForce = 6f;
-    public const float  runningSpeed = 5f;
+    public const float  runningSpeed = 10f;
     Rigidbody2D playerRigidBody;
     // LayerMask define capas para colicionar
     public LayerMask groundMask;
