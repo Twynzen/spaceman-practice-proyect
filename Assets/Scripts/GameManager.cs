@@ -76,7 +76,10 @@ public class GameManager : MonoBehaviour
         {
             //TODO: logica del menu
         }else if (newGameState == GameState.inGame){
+            LevelManager.sharedInstance.RemoveAllLevelBlocks();
+            LevelManager.sharedInstance.GenerateInitialBlocks();
             controller.StartGame();
+
             // TODO: Escena para jugar
         }else if (newGameState == GameState.gameOver){
             //TODO: preparar el juego apra el game over
@@ -84,6 +87,9 @@ public class GameManager : MonoBehaviour
            this.currentGameState = newGameState;
 
         
+    }
+    private void ReloadLevel()
+    {
     }
 
 
