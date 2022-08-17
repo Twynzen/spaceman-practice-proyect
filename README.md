@@ -179,12 +179,11 @@ Un ragdoll no es más que un conjunto de objetos 2d o 3d unidos entre sí. Este 
 Es un script que se encargará de seguir al personaje en todo momento.
 Se puede colocar la camara como hija del "player" pero es mejor  crear un script que se encargue de controlar todo esto.
 
+## Comando bueno para borrar
+git checkout -- . resetear todo 
 
-
-
-
-
-
-
+# Tipos de errores normales
+* Los materiales no utilizan el pipeline de renderización, esta buscando referencias que no existen y manda color fuxia
+> Solución: decirle al universal pipe line URP que actualices los materiales del proyecto
 
 
