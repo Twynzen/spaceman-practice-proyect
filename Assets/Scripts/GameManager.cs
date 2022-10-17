@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour
     {
         if ( Input.GetButtonDown("Submit"))
         {
-
             StartGame();
         }
         if (Input.GetKeyDown(KeyCode.P))
@@ -74,22 +73,31 @@ public class GameManager : MonoBehaviour
     private void SetGameState(GameState newGameState){
         if (newGameState == GameState.menu)
         {
+            MenuManager.sharedInstance.ShowMainMenu();
+            MenuManager.sharedInstance.HideMainGameOverMenu();
+
             //TODO: logica del menu
-        }else if (newGameState == GameState.inGame){
+        }
+        else if (newGameState == GameState.inGame){
             LevelManager.sharedInstance.RemoveAllLevelBlocks();
             LevelManager.sharedInstance.GenerateInitialBlocks();
             controller.StartGame();
-
+            MenuManager.sharedInstance.HideMainMenu();
+            MenuManager.sharedInstance.HideMainGameOverMenu();
             // TODO: Escena para jugar
-        }else if (newGameState == GameState.gameOver){
-            //TODO: preparar el juego apra el game over
         }
-           this.currentGameState = newGameState;
+        else if (newGameState == GameState.gameOver){
+            //TODO: preparar el juego apra el game over
+            MenuManager.sharedInstance.ShowGameOverMenu();
+
+        }
+        this.currentGameState = newGameState;
 
         
     }
     private void ReloadLevel()
     {
+
     }
 
 
